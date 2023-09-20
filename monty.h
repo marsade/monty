@@ -1,5 +1,10 @@
 #ifndef monty_h
 #define monty_h
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#define UNUSED __attribute__((unused))
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
