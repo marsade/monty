@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #ifndef MONTY_H
 #define MONTY_H
 #include <stdio.h>
@@ -62,4 +63,5 @@ void f_queue(stack_t **head, unsigned int counter);
 void free_stack(stack_t *head);
 int execute(char *content, stack_t **head, unsigned int counter, FILE *file);
 void f_pint(stack_t **head, unsigned int number);
+void f_pop(stack_t **head, unsigned int counter);
 #endif
