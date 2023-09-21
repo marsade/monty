@@ -1,27 +1,47 @@
+#define _GNU_SOURCE
 #include "monty.h"
+#include <stdio.h>
+bus_t bus = {NULL, NULL, NULL, 0};
 /**
- * main - the main program for monty interpreter
- * @argc: argument count
- * @argv: argument vector
- * Return: 0
- */
-int main(int argc, UNUSED char *argv[])
+* main - monty code interpreter
+* @argc: number of arguments
+* @argv: monty file location
+* Return: 0 on success
+*/
+int main(int argc, char *argv[])
 {
+	char *content;
 	FILE *file;
-	char *fn;
-	char buffer[1024] UNUSED;
+	size_t size = 0;
+	ssize_t read_line = 1;
+	stack_t *stack = NULL;
+	unsigned int counter = 0;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fn = argv[1];
-	file = fopen(fn, "r");
-	if (file == NULL)
+	file = fopen(argv[1], "r");
+	bus.file = file;
+	if (!file)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", fn);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
+	while (read_line > 0)
+	{
+		content = NULL;
+		read_line = getline(&content, &size, file);
+		bus.content = content;
+		counter++;
+		if (read_line > 0)
+		{
+			execute(content, &stack, counter, file);
+		}
+		free(content);
+	}
+	free_stack(stack);
+	fclose(file);
+return (0);
 }
