@@ -64,4 +64,5 @@ void free_stack(stack_t *head);
 int execute(char *content, stack_t **head, unsigned int counter, FILE *file);
 void f_pint(stack_t **head, unsigned int number);
 void f_pop(stack_t **head, unsigned int counter);
+void f_swap(stack_t **head, unsigned int counter);
 #endif
