@@ -10,9 +10,9 @@ void f_rotl(UNUSED stack_t **head, UNUSED unsigned int counter)
 	stack_t *fn, *next;
 
 	if (*head == NULL)
-	{
 		return;
-	}
+	if ((*head)->next == NULL)
+		return;
 	fn = *head;
 	next = (*head)->next;
 	while (fn->next != NULL)
