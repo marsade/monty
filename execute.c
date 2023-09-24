@@ -13,7 +13,7 @@ void execute(char *content, stack_t **stack, unsigned int counter)
 				{"pop", f_pop}, {"swap", f_swap}, {"add", f_add},
 				{"nop", f_nop}, {"sub", f_sub}, {"div", f_div},
 				{"mul", f_mul}, {"mod", f_mod}, {"pchar", f_pchar},
-				{"pstr", f_pstr}, {NULL, NULL}};
+				{"pstr", f_pstr}, {"rotl", f_rotl}, {"rotr", f_rotr}, {NULL, NULL}};
 	unsigned int i = 0;
 	char *op;
 

@@ -61,6 +61,8 @@ void f_push(stack_t **head, unsigned int number);
 void f_pall(stack_t **head, unsigned int number);
 void addqueue(stack_t **head, int n);
 void f_pstr(stack_t **head, unsigned int counter);
+void f_rotl(stack_t **head, unsigned int counter);
+void f_rotr(stack_t **head, unsigned int counter);
 void free_stack(stack_t *head);
 void execute(char *content, stack_t **head, unsigned int counter);
 void f_pint(stack_t **head, unsigned int number);
