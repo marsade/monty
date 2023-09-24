@@ -7,17 +7,18 @@
 */
 void f_rotr(stack_t **head, UNUSED unsigned int counter)
 {
-	stack_t *prev, *next;
+	stack_t *current, *prev;
 
-	prev = NULL;
-	next = NULL;
-
-	while (*head != NULL)
-	{
-		next = (*head)->next;
-		(*head)->next = prev;
-		prev = *head;
-		*head = next;
-	}
-	*head = prev;
+	current = *head;
+	if (*head == NULL)
+		return;
+	if ((*head)->next == NULL)
+		return;
+	while (current->next != NULL)
+		current = current->next;
+	prev = current->prev;
+	prev->next = NULL;
+	(*head)->prev = current;
+	current->next = *head;
+	*head = current;
 }
