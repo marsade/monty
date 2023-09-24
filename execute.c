@@ -7,7 +7,7 @@
 * @content: line content
 * Return: no return
 */
-int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
+void execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 {
 	instruction_t opst[] = {
 				{"push", f_push}, {"pall", f_pall}, {"pint", f_pint},
@@ -26,21 +26,27 @@ int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 
 	op = strtok(content, " \n\t");
 	if (op && op[0] == '#')
-		return (0);
+		return;
 	bus.arg = strtok(NULL, " \n\t");
 	while (opst[i].opcode && op)
 	{
 		if (strcmp(op, opst[i].opcode) == 0)
-		{	opst[i].f(stack, counter);
-			return (0);
+		{
+			opst[i].f(stack, counter);
+			return;
 		}
 		i++;
 	}
-	if (op && opst[i].opcode == NULL)
-	{ fprintf(stderr, "L%d: unknown instruction %s\n", counter, op);
-		fclose(file);
+	fclose(file);
+	printf("%d\n", i);
+	if (opst[i].opcode == NULL)
+	{
+		if (file != NULL)
+			fclose(bus.file);
+		fprintf(stderr, "L%d: unknown instruction %s\n", counter, op);
 		free(content);
 		free_stack(*stack);
-		exit(EXIT_FAILURE); }
-	return (1);
+		exit(EXIT_FAILURE);
+		return;
+	}
 }
