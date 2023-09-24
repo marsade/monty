@@ -10,8 +10,6 @@ void f_pstr(stack_t **head, UNUSED unsigned int counter)
 	stack_t *h;
 
 	h = *head;
-	if (h == NULL)
-		putchar('\n');
 	while (h)
 	{
 		if (h->n == 0)
